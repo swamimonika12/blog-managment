@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
     
-    public function index(Request $request) {
-        dd('hey');
-    }
     public function login(Request $request) {
         $user = User::where('email', $request->email)->first();
         if (!$user) {
@@ -47,6 +46,16 @@ class UserController extends Controller
             'data' => $user,
             'message' => __('messages.user_register'),
             'status' => '1'
+        ]);
+    }
+
+    public function logout(Request $request) {
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => "User Logout Succesfully",
+            'status' => '1',
         ]);
     }
 }
