@@ -44,9 +44,9 @@ class Blog extends Model
 
     public function scopeLike($query,$user)
     {
-        return $query->withExists(['likes as is_liked' => function ($query) use ($user) {
-            return $query->where(DB::raw("count(*) as count"), 'user_id');
-        }]);
+        // return $query->withExists(['likes as is_liked' => function ($query) use ($user) {
+        //     return $query->where(DB::raw("count(*) as count"), 'user_id');
+        // }]);
 
         // return $query->withExists(['likes as is_liked' => function ($query) use ($user) {
         //     return $query->where('user_id', $user->id)->select(DB::raw("count(*) as count"), 'user_id');

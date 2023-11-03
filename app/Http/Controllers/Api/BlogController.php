@@ -41,7 +41,6 @@ class BlogController extends Controller
             $blog->likes()->where('likable_id',$blog->id)->where('user_id',$user->id)->delete();
 
             return response()->json([
-                // 'data' => $liked_blog,
                 'message' => "Blog Disliked Succesfully",
                 'status' => '1',
             ]);
@@ -51,7 +50,6 @@ class BlogController extends Controller
             ]);
 
             return response()->json([
-                // 'data' => $liked_blog,
                 'message' => "Blog Liked Succesfully",
                 'status' => '1',
             ]);
