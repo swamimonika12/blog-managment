@@ -42,15 +42,15 @@ class Blog extends Model
         return $this->morphMany(Like::class, 'likable');
     }
 
-    public function scopeLike($query,$user)
+    public function likers()
     {
-        // return $query->withExists(['likes as is_liked' => function ($query) use ($user) {
-        //     return $query->where(DB::raw("count(*) as count"), 'user_id');
-        // }]);
-
-        // return $query->withExists(['likes as is_liked' => function ($query) use ($user) {
-        //     return $query->where('user_id', $user->id)->select(DB::raw("count(*) as count"), 'user_id');
-        // }]);
+        return $this->belongsToMany(User::class, Like::class, 'likable_id', 'user_id', 'id', 'id');
+    }
+    
+    //SCOPES
+    public function scopeMostLikedFirst($query)
+    {
+        return $query->withCount(['likers'])->orderBy('likers_count', 'desc');
     }
 
 
