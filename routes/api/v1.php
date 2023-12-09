@@ -11,7 +11,6 @@ Route::group(['middleware' => ['auth:sanctum']] , function() {
         Route::post('create','BlogController@create');
         Route::get('{blog}/like','BlogController@like');
 
-
     });
     Route::get('logout','UserController@logout');
 

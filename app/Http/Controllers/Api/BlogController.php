@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogRequest; 
 use App\Models\Blog;
 use App\Models\Like;
+use App\Traits\SaveFile;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 
 class BlogController extends Controller
 {
+    use SaveFile;
     public function index(Request $request) {
         $user = Auth::user();
         $blogs = Blog::withCount(['likers']);
@@ -28,10 +31,18 @@ class BlogController extends Controller
     }
     public function create(StoreBlogRequest $request) {
         $user = Auth::user();
+    
         $blog = Blog::create([
             'title' => $request->title,
             'description' => $request->description,
         ]);
+        if ($request->has('image')) {
+            foreach ($request['image'] as $file) {
+
+                $blog->img_url = $this->saveFile($file, 'files');
+                $blog->save();
+            }
+        }
 
         return response()->json([
             'data' => $blog,
