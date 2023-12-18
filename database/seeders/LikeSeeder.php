@@ -2,17 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BlogSeeder extends Seeder
+class LikeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-       $blogs = Blog::factory(10)->create();
+        //
     }
 }

@@ -58,7 +58,7 @@ class BlogController extends Controller
             $blog->likes()->where('likable_id',$blog->id)->where('user_id',$user->id)->delete();
 
             return response()->json([
-                'message' => "Blog Disliked Succesfully",
+                'message' => "Blog Disliked Successfully",
                 'status' => '1',
             ]);
         } else {
@@ -67,7 +67,7 @@ class BlogController extends Controller
             ]);
 
             return response()->json([
-                'message' => "Blog Liked Succesfully",
+                'message' => "Blog Liked Successfully",
                 'status' => '1',
             ]);
         }  

@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\HasApiTokens;
 
 class Blog extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     //TABLE
     // public $table = 'blogs';
