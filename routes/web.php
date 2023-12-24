@@ -1,5 +1,6 @@
 <?php
 
+// namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'App\Http\Controllers\Admin'], function () {
+    Route::view('blog','BlogController@index');
 });

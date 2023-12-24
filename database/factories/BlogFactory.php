@@ -20,7 +20,7 @@ class BlogFactory extends Factory
         return [
             'title' => fake()->name(),
             'description' => fake()->text(),
-            'img_url' => $this->faker->randomElement(config('default_images')),
+            'img_url' => $this->faker->image('public/storage/images',640,480, null, false),
         ];
     }
 }
