@@ -33,6 +33,7 @@ class BlogController extends Controller
         $user = Auth::user();
     
         $blog = Blog::create([
+            'user_id' => $user->id,
             'title' => $request->title,
             'description' => $request->description,
         ]);

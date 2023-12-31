@@ -2,14 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Blog;
 use App\Models\User;
+use App\Models\Blog;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Blog>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like>
  */
-class BlogFactory extends Factory
+class LikeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +21,8 @@ class BlogFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'title' => fake()->name(),
-            'description' => fake()->text(),
-            'img_url' => $this->faker->image('public/storage/images',640,480, null, false),
+            'likable_type' => app(Blog::class)->getMorphClass(),
+            'likable_id' => Blog::inRandomOrder()->first()->id,
         ];
     }
 }

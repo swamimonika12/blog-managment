@@ -18,6 +18,7 @@ class Blog extends Model
     //FILLABLES
     protected $fillable = [
         'title',
+        'user_id',
         'description',
         'img_url'
     ];
@@ -47,7 +48,7 @@ class Blog extends Model
     {
         return $this->belongsToMany(User::class, Like::class, 'likable_id', 'user_id', 'id', 'id');
     }
-    
+
     //SCOPES
     public function scopeMostLikedFirst($query)
     {
